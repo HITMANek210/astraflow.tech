@@ -12,7 +12,7 @@ export const translations = {
   // Hero Section
   hero: {
     title: "Filip Wyrembak",
-    subtitle: "Security Analyst at ING | Personal Brand Builder",
+    subtitle: "Security Analyst at ING | I Help Build Brands That Stand Out",
     description: "Building brands that get noticed and drive results with clear messaging and real stories.",
     bookCall: "Book a Free Call",
     viewProcess: "View My Process",
