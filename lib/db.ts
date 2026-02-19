@@ -1,35 +1,42 @@
 import { Pool } from 'pg';
 
-// Get database URL from environment variable
-const connectionString = process.env.DATABASE_URL;
+// Lazy initialization of connection pool to avoid errors during build time
+let pool: Pool | null = null;
 
-if (!connectionString) {
-  throw new Error(
-    'DATABASE_URL environment variable is required. Please set it in your .env.local file or environment variables.'
-  );
+function getPool(): Pool {
+  if (!pool) {
+    const connectionString = process.env.DATABASE_URL;
+
+    if (!connectionString) {
+      throw new Error(
+        'DATABASE_URL environment variable is required. Please set it in your .env.local file or environment variables.'
+      );
+    }
+
+    // Create a connection pool
+    pool = new Pool({
+      connectionString,
+      ssl: {
+        rejectUnauthorized: false, // Required for Railway PostgreSQL
+      },
+    });
+
+    // Test the connection
+    pool.on('connect', () => {
+      console.log('Connected to PostgreSQL database');
+    });
+
+    pool.on('error', (err) => {
+      console.error('Unexpected error on idle client', err);
+      process.exit(-1);
+    });
+  }
+  return pool;
 }
-
-// Create a connection pool
-const pool = new Pool({
-  connectionString,
-  ssl: {
-    rejectUnauthorized: false, // Required for Railway PostgreSQL
-  },
-});
-
-// Test the connection
-pool.on('connect', () => {
-  console.log('Connected to PostgreSQL database');
-});
-
-pool.on('error', (err) => {
-  console.error('Unexpected error on idle client', err);
-  process.exit(-1);
-});
 
 // Initialize database schema
 export async function initializeDatabase() {
-  const client = await pool.connect();
+  const client = await getPool().connect();
   try {
     // Create contact_submissions table if it doesn't exist
     await client.query(`
@@ -73,7 +80,7 @@ export async function insertContactSubmission(data: {
   challenge?: string;
   message: string;
 }) {
-  const client = await pool.connect();
+  const client = await getPool().connect();
   try {
     const result = await client.query(
       `INSERT INTO contact_submissions (name, email, company_title, challenge, message)
@@ -92,7 +99,7 @@ export async function insertContactSubmission(data: {
 
 // Get all contact submissions (for admin purposes)
 export async function getContactSubmissions(limit: number = 100) {
-  const client = await pool.connect();
+  const client = await getPool().connect();
   try {
     const result = await client.query(
       `SELECT id, name, email, company_title, challenge, message, created_at
@@ -110,4 +117,4 @@ export async function getContactSubmissions(limit: number = 100) {
   }
 }
 
-export default pool;
+export default getPool;
