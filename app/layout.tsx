@@ -14,7 +14,7 @@ const inter = Inter({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://astraflow.tech";
 const siteName = "Filip Wyrembak | Brand Strategist";
-const defaultDescription = "Filip Wyrembak – Brand Strategist & Security Analyst at ING. Helping leaders and executives build personal brands that command attention, open doors, and drive real results through clear messaging, content strategy, and online presence.";
+const defaultDescription = "Brand Strategist & Security Analyst at ING. Helping leaders and executives build personal brands that command attention, open doors, and drive real results through clear messaging and strategy.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

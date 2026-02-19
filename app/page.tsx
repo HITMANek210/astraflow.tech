@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   title: {
     absolute: "Filip Wyrembak | Brand Strategist",
   },
-  description: "Filip Wyrembak - Security Analyst at ING and Personal Brand Builder. Building brands that command attention and drive results. Helping leaders build personal brands that open doors through clear messaging, content strategy, and online presence optimization.",
+  description: "Brand Strategist & Security Analyst at ING. Helping leaders and executives build personal brands that command attention, open doors, and drive real results through clear messaging and strategy.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Filip Wyrembak | Brand Strategist",
-    description: "Helping leaders and executives build personal brands that command attention and drive real results.",
+    description: "Brand Strategist & Security Analyst at ING. Helping leaders and executives build personal brands that command attention, open doors, and drive real results through clear messaging and strategy.",
     url: siteUrl,
   },
 };
@@ -141,6 +141,8 @@ export default function Page() {
       />
       
       <main>
+        {/* Static H1 for SEO crawlers - hidden visually but accessible to search engines */}
+        <h1 className="sr-only">Filip Wyrembak | Brand Strategist</h1>
         <HeroSection />
         <AboutIntro />
         <ServicesSection />
