@@ -4,7 +4,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://astraflow.tech";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Book a free 30-minute consultation with Filip Wyrembak to discuss your personal branding goals. No pitch, no pressure - just an honest conversation about building your brand.",
+  description: "Book a free 30-minute consultation with Filip Wyrembak to discuss your personal branding goals. No pitch, no pressure - just an honest conversation.",
   alternates: {
     canonical: "/contact",
   },

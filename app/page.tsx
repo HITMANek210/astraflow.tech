@@ -6,24 +6,8 @@ import { PortfolioSection } from "@/components/portfolio-section";
 import { CredentialsSection } from "@/components/credentials-section";
 import { FinalCta } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
-import type { Metadata } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://astraflow.tech";
-
-export const metadata: Metadata = {
-  title: {
-    absolute: "Filip Wyrembak | Brand Strategist",
-  },
-  description: "Brand Strategist & Security Analyst at ING. Helping leaders and executives build personal brands that command attention, open doors, and drive real results through clear messaging and strategy.",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Filip Wyrembak | Brand Strategist",
-    description: "Brand Strategist & Security Analyst at ING. Helping leaders and executives build personal brands that command attention, open doors, and drive real results through clear messaging and strategy.",
-    url: siteUrl,
-  },
-};
 
 // Structured Data (JSON-LD) for better AI and search engine understanding
 const structuredData = {
@@ -141,8 +125,6 @@ export default function Page() {
       />
       
       <main>
-        {/* Static H1 for SEO crawlers - hidden visually but accessible to search engines */}
-        <h1 className="sr-only">Filip Wyrembak | Brand Strategist</h1>
         <HeroSection />
         <AboutIntro />
         <ServicesSection />
